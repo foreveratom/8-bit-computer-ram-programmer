@@ -1,4 +1,5 @@
 #include "8BitWiFi.h"
+#include "StringSplitter.h"
 
 WebServer8B::WebServer8B(
     const char* ssid,
@@ -141,9 +142,14 @@ bool WebServer8B::handleLoad(const String request) {
     String p = request.substring(request.indexOf("&load="));
     p.replace("&load=", "");
     p = p.substring(0, p.indexOf("&"));
-    
-    //p is expected to be a CSV of instructions in assembly form (e.g: "LDA 5; OUT; HLT");    
-    
+
+    StringSplitter instructions = StringSplitter(p, ';', 16);    
+    for(int i = 0; i < instructions.getItemCount(); i++){
+      String instruction = instructions.getItemAtIndex(i);
+      instruction.trim();
+      this->_program.set(i, instruction);      
+    }
+  
     for (int i = 0; i < this->_program.length(); i++) {
         Serial.println(this->_program.instructionOf(i));
     }   

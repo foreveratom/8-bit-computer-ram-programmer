@@ -17,6 +17,8 @@ class Program8B {
     
     Program8B& set(const int step, const int instruction, const int payload);
 
+    Program8B& set(const int step, const String instruction);
+
     Program8B& NOP(const int step) {
       return set(step, _NOP, 0);
     }

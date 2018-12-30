@@ -73,6 +73,73 @@ Program8B& Program8B::set(const int step, const int instruction, const int paylo
   return *this;
 }
 
+Program8B& Program8B::set(const int step, const String instruction) {
+  if ((step < 0) || (step >= length())) {
+    return *this;      
+  }
+
+  const int space = instruction.indexOf(" ");
+  const String inst = (space == -1) ? instruction : instruction.substring(0, space);
+  const int payload = (space == -1) ? 0 : instruction.substring(space).toInt();
+
+  if (inst.equalsIgnoreCase("NOP")) {
+    NOP(step);
+    return *this;
+  }
+  
+  if (inst.equalsIgnoreCase("HLT")) {
+    HLT(step);
+    return *this;
+  }
+  
+  if (inst.equalsIgnoreCase("OUT")) {
+    OUT(step);
+    return *this;
+  }
+  
+  if (inst.equalsIgnoreCase("LDA")) {
+    LDA(step, payload);
+    return *this;
+  }
+  
+  if (inst.equalsIgnoreCase("LDI")) {
+    LDI(step, payload);
+    return *this;
+  }
+
+  if (inst.equalsIgnoreCase("ADD")) {
+    ADD(step, payload);
+    return *this;
+  }
+
+  if (inst.equalsIgnoreCase("SUB")) {
+    SUB(step, payload);
+    return *this;
+  }
+
+  if (inst.equalsIgnoreCase("STA")) {
+    STA(step, payload);
+    return *this;
+  }
+  
+  if (inst.equalsIgnoreCase("JMP")) {
+    JMP(step, payload);
+    return *this;
+  }
+  
+  if (inst.equalsIgnoreCase("JC")) {
+    JC(step, payload);
+    return *this;
+  }
+
+  if (inst.equalsIgnoreCase("JZ")) {
+    JZ(step, payload);
+    return *this;
+  }
+  
+  return *this;
+}
+
 
 String Program8B::binaryOf(const int value, const int digits) {
   String returned = "";
