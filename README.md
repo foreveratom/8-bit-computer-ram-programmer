@@ -28,7 +28,7 @@ Redditor /u/foreveratom
 
 The module follows the same basics as the [EEPROM programmer](https://www.youtube.com/watch?v=K88pgWhEb1M) in that it uses two 74HC595 shift registers to provide more output lines (16 in total) than what [ESP8266 boards can provide](https://github.com/thehookup/Wireless_MQTT_Doorbell/blob/master/GPIO_Limitations_ESP8266_NodeMCU.jpg). The build uses all 'safely' available pins (D1, D2, D5, D6, D7 and D8) with 3 pins (D5, D7 and D8) used for SPI transfer with the registers.
 
-To build the module you will need the room on roughly half a breadboard and two 74HC595 shift registers in addition to the ESP8266. You should have enough room on your 8-bit computer if you remove the dip switches and the logic components around the existing RAM programming module.
+To build the module you will need the room on roughly half a breadboard and two 74HC595 shift registers in addition to the ESP8266. You should have enough room on your 8-bit computer if you remove the dip switches and the logic components around the existing RAM programming module. If you intend to wire LEDs to the shift register outputs for testing, make sure to connect them to ground through a resistor (I use 420 ohms resistors).
 
 Follow the [wiring in this article](https://techtutorialsx.com/2016/09/04/esp8266-controlling-chained-sn74hc595-ics/) to wire the ESP8266 to the shift registers; the code currently uses the following mapping:
 
@@ -78,10 +78,6 @@ When the program stored in the server is being written to the 8-bit computer, th
 * The HLT and PRG pins are set to LOW.
 
 This allows for using the Halt and Program Mode pins and/or flags according to your wiring. Unfortunately, due to the lack of available pins, a reset pin could not be added.
-
-##### Tip
-
-While testing your module with LEDs (of course you do, right?), make sure you put a proper resistor from the LED to ground (I use 420 Ohms resistors). The output of ESP8266 is enough to fry most of the LEDs or make you see stars for a while if you stare at them for too long.
 
 ##### About using HC vs LS 74xxx
 
