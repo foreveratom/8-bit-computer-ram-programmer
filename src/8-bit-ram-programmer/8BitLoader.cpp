@@ -6,7 +6,8 @@ Loader8B::Loader8B() {
 
 void Loader8B::execute(Program8B program, const int interval) {
   Serial.println("Loader execute()");
-
+  SPI.begin();
+  
   this->begin();
   delay(100);  
 
@@ -33,9 +34,11 @@ void Loader8B::execute(Program8B program, const int interval) {
   delay(interval);
       
   this->clear();
-  delay(100);  
+  delay(10);  
 
   this->end();      
+
+  SPI.end();
 }
 
 void Loader8B::begin() {  
@@ -43,28 +46,31 @@ void Loader8B::begin() {
 
   pinMode(_PIN_PRG, OUTPUT);
   pinMode(_PIN_HLT, OUTPUT);
-  pinMode(_PIN_SS, OUTPUT);    
-  delay(100);
-  
+  pinMode(_PIN_SS, OUTPUT); 
+  pinMode(LED_BUILTIN, OUTPUT);     
+  delay(10);
+
+  digitalWrite(LED_BUILTIN, LOW);  
+  delay(10);
+
   digitalWrite(_PIN_HLT, HIGH);  
-  delay(100);
+  delay(10);
 
   digitalWrite(_PIN_PRG, HIGH);
-  delay(100);
-  
-  SPI.begin();
+  delay(10);
+    
 }
 
 void Loader8B::end() {
   Serial.println("send END");
   
   digitalWrite(_PIN_PRG, LOW);
-  delay(100);  
+  delay(10);  
   
   digitalWrite(_PIN_HLT, LOW);
-  delay(100);
+  delay(10);
   
-  SPI.end();  
+  digitalWrite(LED_BUILTIN, HIGH);     
 }
 
 void Loader8B::clear() {

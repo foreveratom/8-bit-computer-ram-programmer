@@ -87,6 +87,7 @@ void WebServer8B::accept(WiFiClient& client) {
 
   if (!request.startsWith("GET")) {
     this->reply(client, 405, "");//method not supported
+    return;
   }
   
   if (this->_busy) {
