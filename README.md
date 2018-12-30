@@ -129,3 +129,4 @@ Note that the order of parameters does not matter. *clear* is always executed fi
 
 * [Pin mapping of the ESP8266](http://esp8266.github.io/Arduino/versions/2.0.0/doc/reference.html). Be aware that your experience in pin mapping may vary depending on the development board used. The current source is [mapped to a NodeMCU](https://techtutorialsx.com/2017/04/02/esp8266-nodemcu-pin-mappings/) board.
 
+* [SN74HC595 datasheet](http://www.ti.com/lit/ds/symlink/sn74hc595.pdf).
