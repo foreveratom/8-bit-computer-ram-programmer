@@ -100,21 +100,21 @@ shown in the console.
 
 ### HTTP Commands
 
-The HTTP server allows a few commands to be sent to it through a GET request (parameterized URL); note that nothing is sent to the computer until a `write` command is issued.
+The HTTP server allows a few commands to be sent to it through a GET request (parameterized URL); nothing is sent to the computer until a `write` command is issued.
 
-Note: you should substitute "8bit" with the IP address of your module in the examples below.
+*substitute "8bit" with the IP address of your module in the examples below.*
 
 ##### 'clear' 
 
 `http://8bit/?clear`
 
-This will erase the program loaded on the server.
+This will erase the program currently loaded on the server and fill it with NOP instructions.
 
 ##### 'load' 
 
 `http://8bit/?load=<PROGRAM>`
 
-This will load the provided program on the server. The program should be expressed as a semi-colon-separated-value string containing each instruction, up to 16.
+This will load the provided program on the server - you will still need to issue a 'write' command to program the computer. The program should be expressed as a semi-colon-separated-value string containing each instruction, up to 16.
 
 e.g: the following program
 
