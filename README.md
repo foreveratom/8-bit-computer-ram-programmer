@@ -4,13 +4,15 @@
 
 This project uses an [ESP8266](https://en.wikipedia.org/wiki/ESP8266) to replace the [RAM programming module](https://eater.net/8bit/ram) dip switches and push buttons for the 8-Bit Computer. The ESP8266 hosts a HTTP server from which programs can be loaded into the computer. 
 
+Note: the documentation hereunder assumes that you are familiar with Ben Eater's 8-bit computer build and dealing with Arduino things.
+
 ## Seriously, why?
 
-One may argue that adding a super-capable microcontroller to the 8-bit computer totally defeats the purpose. Those people are right, overkill is the definition of this project.
+One may argue that adding a super-capable microcontroller to the 8-bit computer totally defeats the purpose of the 8-bit computer which is made with only basic integrated circuits. Those people are right, and overkill is the definition of this project.
 
-However, too much sanity was lost trying to deal with the dip switches I have and their flaky connections to breadboards and a different solution was needed, badly. Also how cool would 'that' be to be able to program the computer from anywhere?
+However, while testing and programming the my 8-bit computer build, too much sanity was lost trying to deal with the dip switches and their flaky connections to breadboards; a different solution was needed, badly. Also how cool would that be to be able to program the computer from any web browser? Right?
 
-I had an ESP12 board lying around from past tinkering; this thing has wireless and bluetooth built-in, acts and programs like an Arduino; it's wonderful and totally suited for the job. 
+I had an ESP12 board lying around from past tinkering; this thing has wireless and bluetooth built-in, acts and programs like an Arduino; it's wonderful and perfectly suited for the job. 
 
 I had the technology...you know the drill.
 
@@ -42,11 +44,10 @@ With the current code's pin mapping, the shit register (A) receiving the data si
 
 ##### Shit Register A
 ```
-QA -> unused (reserved for 'activate laser' function)
+QA -> unused (reserved for future 'activate laser' use)
 QB -> Reset flag
 QC -> Program mode flag
 QD -> Halt flag
-
 QE -> Memory Register bit 1 
 QF -> Memory Register bit 2
 QG -> Memory Register bit 3
@@ -75,9 +76,9 @@ While testing your module with LEDs (of course you do, right?), make sure you pu
 
 Because I could not find any 74LS595 easily, following the EEPROM programmer this build uses their HC variant. It is usually recommended not to mix LS and HC components together but while using HC inputs from LS variants is incorrect, it is safe to use HC as output only to LS chips. At least the internet says so.
 
-## Documentation
+## Runtime
 
-### Quick Start
+To start using and running the code with the module:
 
 * Follow the numerous articles on the web to set your board up and running with Arduino IDE or else.
 
@@ -93,6 +94,8 @@ shown in the console.
 ### HTTP Commands
 
 The HTTP server allows a few commands to be sent to it through a GET request (parameterized URL); note that nothing is sent to the computer until a `write` command is issued.
+
+Note: you should substitute "8bit" with the IP address of your module in the examples below.
 
 ##### 'clear' 
 
