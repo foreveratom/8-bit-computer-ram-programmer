@@ -40,9 +40,9 @@ D7 -> SPI data (MOSI)
 D8 -> SPI Master/Slave (SS)
 ```
 
-With the current code's pin mapping, the shit register (A) receiving the data signal (SER) outputs memory register addresses and a halt (HLT), program mode (PRG) and reset (RST) flags - the memory register outputs should replace the memory register dip switches from the computer and the flag outputs should be wired to the clock HLT, program mode switch and reset switch respectively.
+With the current code's pin mapping, the shift register (A) receiving the data signal (SER) outputs memory register addresses and a halt (HLT), program mode (PRG) and reset (RST) flags - the memory register outputs should replace the memory register dip switches from the computer and the flag outputs should be wired to the clock HLT, program mode switch and reset switch respectively.
 
-##### Shit Register A
+##### Shift Register A
 ```
 QA -> unused (reserved for future 'activate laser' use)
 QB -> Reset flag
@@ -56,7 +56,7 @@ QH -> Memory Register bit 4
 
 The second register (B) outputs the 8-bit of memory content for the memory register stored in the first register.
 
-##### Shit Register B
+##### Shift Register B
 ```
 QA -> Memory bit 1
 QB -> Memory bit 2
