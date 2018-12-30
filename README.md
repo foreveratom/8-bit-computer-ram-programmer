@@ -4,15 +4,15 @@
 
 This project uses an [ESP8266](https://en.wikipedia.org/wiki/ESP8266) to replace the [RAM programming module](https://eater.net/8bit/ram) dip switches and push buttons for the 8-Bit Computer. The ESP8266 hosts a HTTP server from which programs can be loaded into the computer. 
 
-Note: the documentation hereunder assumes that you are familiar with Ben Eater's 8-bit computer build and dealing with Arduino things.
+The documentation hereunder assumes that you are familiar with Ben Eater's 8-bit computer build and dealing with Arduino things.
 
 ## Seriously, why?
 
-One may argue that adding a super-capable microcontroller to the 8-bit computer totally defeats the purpose of the 8-bit computer which is made with only basic integrated circuits. Those people are right, and overkill is the definition of this project.
+One may argue that adding a super-capable microcontroller to the 8-bit computer totally defeats the purpose of it, which is made with only basic integrated circuits. Those people are right, and overkill is the definition of this project.
 
-However, while testing and programming the my 8-bit computer build, too much sanity was lost trying to deal with the dip switches and their flaky connections to breadboards; a different solution was needed, badly. Also how cool would that be to be able to program the computer from any web browser? Right?
+However, while testing and programming my computer build, too much sanity was lost trying to deal with the dip switches and their flaky connections to breadboards; some would even pop out a few cm away when fiddled with. A different solution was needed, badly. Also how cool would that be to be able to program the computer from any web browser? Right?
 
-I had an ESP12 board lying around from past tinkering; this thing has wireless and bluetooth built-in, acts and programs like an Arduino; it's wonderful and perfectly suited for the job. 
+I had an ESP8266 development board lying around from past tinkering; this thing has wireless and bluetooth built-in, acts and programs like an Arduino; it's wonderful and perfectly suited for the job. 
 
 I had the technology...you know the drill.
 
@@ -20,7 +20,7 @@ I had the technology...you know the drill.
 
 I am an electronic beginner and learned most of it while building [Ben Eater's 8 Bit Computer](https://eater.net/8bit), which is a wonderful video series. That is to say I don't exactly know what I'm doing besides what I remember from school: `U = RI`. While I am comfortable with programming, the source code is in C++ which I had not visited since the advent of Java.
 
-You will most likely see mistakes, horrors and other stranger things in the wiring and/or code. Don't kill me if your computer ends up in smoke but please make sure to let me know of any error, improvement or else, and don't hesitate to educate me.
+You will most likely see mistakes, horrors and other stranger things in the wiring and/or code. Don't kill me if your computer ends up in smoke but please make sure to let me know of any error, improvement or else, and please do not hesitate to educate me.
 
 Redditor /u/foreveratom
 
