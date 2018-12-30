@@ -14,6 +14,48 @@ I had an ESP12 board lying around from past tinkering; this thing has wireless a
 
 I had the technology...you know the drill.
 
+## Build 
+
+The module follows the same basics as the [EEPROM programmer](https://www.youtube.com/watch?v=K88pgWhEb1M) in that it uses two 74HC595 shift registers to provide more output lines (16 in total) than what most of the [ESP8266 boards provide](https://github.com/thehookup/Wireless_MQTT_Doorbell/blob/master/GPIO_Limitations_ESP8266_NodeMCU.jpg). The build uses all 'safely' available pins (D1, D2, D5, D6, D7 and D8) with 3 pins (D5, D7 and D8) used for SPI transfer with the registers.
+
+To build the module you will need the room on roughly half a breadboard and two 74HC595 shift registers in addition to the ESP8266. You should have enough room on your 8-bit computer if you remove the dip switches and the logic components around the existing RAM programming module.
+
+Follow the [wiring in this article](https://techtutorialsx.com/2016/09/04/esp8266-controlling-chained-sn74hc595-ics/) to wire the ESP8266 to the shift registers; the code currently uses the following mapping:
+
+```
+D1 -> Halt
+D2 -> Program Mode
+D5 -> SPI clock (SCLK)
+D7 -> SPI data (MOSI)
+D8 -> SPI Master/Slave (SS)
+```
+
+With the current code's pin mapping, the register receiving the data signal (SER) outputs memory register addresses and a halt (HLT), program mode (PRG) and reset (RST) flags - the memory register outputs should replace the memory register dip switches from the computer and the flag outputs wired to the clock HLT, program mode switch and reset switch respectively.
+
+```
+QA -> unused (reserved for 'activate laser' function)
+QB -> Reset flag
+QC -> Program mode flag
+QD -> Halt flag
+
+QE -> Memory Register bit 1 
+QF -> Memory Register bit 2
+QG -> Memory Register bit 3
+QH -> Memory Register bit 4
+```
+
+The second register outputs the 8-bit of memory content for the memory register stored in the first register.
+
+```
+QA -> Memory bit 1
+QB -> Memory bit 2
+QC -> Memory bit 3
+QD -> Memory bit 4
+QE -> Memory bit 5
+QF -> Memory bit 6
+QG -> Memory bit 7
+QH -> Memory bit 8
+```
 
 ## Documentation
 
