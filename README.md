@@ -32,19 +32,19 @@ shown in the console.
 
 ### HTTP Commands
 
-The HTTP server allows a few commands to be sent to it through a GET request (parameterized URL);
+The HTTP server allows a few commands to be sent to it through a GET request (parameterized URL); note that nothing is sent to the computer until a `write` command is issued.
 
 ##### 'clear' 
 
 `http://8bit/?clear`
 
-This will erase the loaded program but will NOT write it to the computer.
+This will erase the program loaded on the server.
 
 ##### 'load' 
 
 `http://8bit/?load=<PROGRAM>`
 
-This will load the provided program into the server, but will NOT write it to the computer. The program should be expressed as a semi-colon-separated-value string containing each instruction, up to 16.
+This will load the provided program on the server. The program should be expressed as a semi-colon-separated-value string containing each instruction, up to 16.
 
 e.g: the following program
 
@@ -54,11 +54,7 @@ OUT
 HLT
 ```
 
-should be written in the format
-`LDA 15; OUT; HLT`
-
-and sent like this
-`http://8bit/?load=LDA 15; OUT; HLT`
+should be sent as `http://8bit/?load=LDA 15; OUT; HLT`
 
 ##### 'write'
 
