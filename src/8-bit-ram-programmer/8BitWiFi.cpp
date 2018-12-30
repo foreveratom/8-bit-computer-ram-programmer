@@ -134,23 +134,27 @@ void WebServer8B::accept(WiFiClient& client) {
 }
 
 bool WebServer8B::handleLoad(const String request) {
+    Serial.println("Loading program...");
+    
     this->_program.clear();    
+    
     String p = request.substring(request.indexOf("&load="));
     p.replace("&load=", "");
     p = p.substring(0, p.indexOf("&"));
     
     //p is expected to be a CSV of instructions in assembly form (e.g: "LDA 5; OUT; HLT");    
     
-    Serial.println("Program loaded");
     for (int i = 0; i < this->_program.length(); i++) {
         Serial.println(this->_program.instructionOf(i));
     }   
-    Serial.println("");
     
+    Serial.println("Program loaded");    
     return true;
 }
 
-bool WebServer8B::handleWrite(const String request) {        
+bool WebServer8B::handleWrite(const String request) {
+    Serial.println("Writing program...");
+    
     int iindex = request.indexOf("&interval=");
     if (iindex == -1) {
       this->_loader.write(this->_program, 100);
@@ -169,6 +173,7 @@ bool WebServer8B::handleWrite(const String request) {
 }
 
 bool WebServer8B::handleClear(const String request) {
+    Serial.println("Clearing program...");
     this->_program.clear();
     Serial.println("Program cleared");
     return true;

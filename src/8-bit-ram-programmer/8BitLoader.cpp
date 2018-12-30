@@ -5,7 +5,6 @@ Loader8B::Loader8B() {
 }
 
 void Loader8B::execute(Program8B program, const int interval) {
-  Serial.println("Loader execute()");
   SPI.begin();
   
   this->begin();
@@ -42,7 +41,7 @@ void Loader8B::execute(Program8B program, const int interval) {
 }
 
 void Loader8B::begin() {  
-  Serial.println("send BEGIN");
+  Serial.println("write BEGIN");
 
   pinMode(_PIN_PRG, OUTPUT);
   pinMode(_PIN_HLT, OUTPUT);
@@ -62,7 +61,7 @@ void Loader8B::begin() {
 }
 
 void Loader8B::end() {
-  Serial.println("send END");
+  Serial.println("write END");
   
   digitalWrite(_PIN_PRG, LOW);
   delay(10);  
@@ -74,7 +73,7 @@ void Loader8B::end() {
 }
 
 void Loader8B::clear() {
-  Serial.println("send CLEAR");  
+  Serial.println("write CLEAR");  
   
   digitalWrite(_PIN_SS, LOW);
   SPI.transfer(0);
@@ -83,7 +82,7 @@ void Loader8B::clear() {
 }
 
 void Loader8B::reset() {
-  Serial.println("send RESET");  
+  Serial.println("write RESET");  
   digitalWrite(_PIN_SS, LOW);
   SPI.transfer(0);
   SPI.transfer(_OUT_RST | _OUT_HLT | _OUT_PRG);
