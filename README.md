@@ -57,6 +57,14 @@ QG -> Memory bit 7
 QH -> Memory bit 8
 ```
 
+##### Tip
+
+While testing your module with LEDs (of course you do, right?), make sure you put a proper resistance from the LED to ground (I use 420 Ohm resistors). The output of ESP8266 is enough to fry most of the LEDs or make you see stars for a while if you stare at them for too long.
+
+##### About using HC vs LS 74xxx
+
+Because I could not find any 74LS595 easily, following the EEPROM programmer this build uses their HC variant. It is usually recommended not to mix LS and HC components together but while using HC inputs from LS variants is incorrect, it is safe to use HC as output only to LS chips. At least the internet says so.
+
 ## Documentation
 
 ### Quick Start
