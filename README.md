@@ -67,6 +67,17 @@ QF -> Memory bit 6
 QG -> Memory bit 7
 QH -> Memory bit 8
 ```
+When the program stored in the server is being written to the 8-bit computer, the following happens (in order)
+
+* The HLT and PRG pins are set to HIGH.
+
+* For each instruction, the HLT and PRG flags bits are set to 1 in addition of the memory register and memory content bits.
+
+* After all instructions are set, the RESET flag is set to 1 for a customizable amount of time (see further down about 'write').
+
+* The HLT and PRG pins are set to LOW.
+
+This allows for using the Halt and Program Mode pins and/or flags according to your wiring. Unfortunately, due to the lack of available pins, a reset pin could not be added.
 
 ##### Tip
 
