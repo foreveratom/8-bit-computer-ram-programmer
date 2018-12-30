@@ -14,9 +14,17 @@ I had an ESP12 board lying around from past tinkering; this thing has wireless a
 
 I had the technology...you know the drill.
 
+## Disclaimer
+
+I am an electronic beginner and learned most of it while building [Ben Eater's 8 Bit Computer](https://eater.net/8bit), which is a wonderful video series. That is to say I don't exactly know what I'm doing besides what I remember from school: `U = RI`. While I am comfortable with programming, the source code is in C++ which I had not visited since the advent of Java.
+
+You will most likely see mistakes, horrors and other stranger things in the wiring and/or code. Don't kill me if your computer ends up in smoke but please make sure to let me know of any error, improvement or else, and don't hesitate to educate me.
+
+Redditor /u/foreveratom
+
 ## Build 
 
-The module follows the same basics as the [EEPROM programmer](https://www.youtube.com/watch?v=K88pgWhEb1M) in that it uses two 74HC595 shift registers to provide more output lines (16 in total) than what most of the [ESP8266 boards provide](https://github.com/thehookup/Wireless_MQTT_Doorbell/blob/master/GPIO_Limitations_ESP8266_NodeMCU.jpg). The build uses all 'safely' available pins (D1, D2, D5, D6, D7 and D8) with 3 pins (D5, D7 and D8) used for SPI transfer with the registers.
+The module follows the same basics as the [EEPROM programmer](https://www.youtube.com/watch?v=K88pgWhEb1M) in that it uses two 74HC595 shift registers to provide more output lines (16 in total) than what [ESP8266 boards can provide](https://github.com/thehookup/Wireless_MQTT_Doorbell/blob/master/GPIO_Limitations_ESP8266_NodeMCU.jpg). The build uses all 'safely' available pins (D1, D2, D5, D6, D7 and D8) with 3 pins (D5, D7 and D8) used for SPI transfer with the registers.
 
 To build the module you will need the room on roughly half a breadboard and two 74HC595 shift registers in addition to the ESP8266. You should have enough room on your 8-bit computer if you remove the dip switches and the logic components around the existing RAM programming module.
 
@@ -30,8 +38,9 @@ D7 -> SPI data (MOSI)
 D8 -> SPI Master/Slave (SS)
 ```
 
-With the current code's pin mapping, the register receiving the data signal (SER) outputs memory register addresses and a halt (HLT), program mode (PRG) and reset (RST) flags - the memory register outputs should replace the memory register dip switches from the computer and the flag outputs wired to the clock HLT, program mode switch and reset switch respectively.
+With the current code's pin mapping, the shit register (A) receiving the data signal (SER) outputs memory register addresses and a halt (HLT), program mode (PRG) and reset (RST) flags - the memory register outputs should replace the memory register dip switches from the computer and the flag outputs should be wired to the clock HLT, program mode switch and reset switch respectively.
 
+##### Shit Register A
 ```
 QA -> unused (reserved for 'activate laser' function)
 QB -> Reset flag
@@ -44,8 +53,9 @@ QG -> Memory Register bit 3
 QH -> Memory Register bit 4
 ```
 
-The second register outputs the 8-bit of memory content for the memory register stored in the first register.
+The second register (B) outputs the 8-bit of memory content for the memory register stored in the first register.
 
+##### Shit Register B
 ```
 QA -> Memory bit 1
 QB -> Memory bit 2
@@ -59,7 +69,7 @@ QH -> Memory bit 8
 
 ##### Tip
 
-While testing your module with LEDs (of course you do, right?), make sure you put a proper resistance from the LED to ground (I use 420 Ohm resistors). The output of ESP8266 is enough to fry most of the LEDs or make you see stars for a while if you stare at them for too long.
+While testing your module with LEDs (of course you do, right?), make sure you put a proper resistor from the LED to ground (I use 420 Ohms resistors). The output of ESP8266 is enough to fry most of the LEDs or make you see stars for a while if you stare at them for too long.
 
 ##### About using HC vs LS 74xxx
 
@@ -109,6 +119,7 @@ should be sent as `http://8bit/?load=LDA 15; OUT; HLT`
 ##### 'write'
 
 `http://8bit/?write`
+
 `http://8bit/?write&interval=1000`
 
 This will write the loaded program to the computer. You can specify an optional interval in milliseconds (minimum 100) between each writing step which can be useful for debugging or because it looks pretty at slow speed with all those LEDs blinking.
@@ -125,7 +136,7 @@ Note that the order of parameters does not matter. *clear* is always executed fi
 
 * I could not have started this without Ben Eater's explanation of shit registers while building the [EEPROM programmer module](https://www.youtube.com/watch?v=K88pgWhEb1M).
 
-* This article about [controlling chained 74HC595 with I2C](https://techtutorialsx.com/2016/09/04/esp8266-controlling-chained-sn74hc595-ics/) explains how to chain shift registers and use I2C to push data into them.
+* This article about [controlling chained 74HC595 with I2C](https://techtutorialsx.com/2016/09/04/esp8266-controlling-chained-sn74hc595-ics/) explains how to chain shift registers and use SPI to push data into them.
 
 * [Pin mapping of the ESP8266](http://esp8266.github.io/Arduino/versions/2.0.0/doc/reference.html). Be aware that your experience in pin mapping may vary depending on the development board used. The current source is [mapped to a NodeMCU](https://techtutorialsx.com/2017/04/02/esp8266-nodemcu-pin-mappings/) board.
 
