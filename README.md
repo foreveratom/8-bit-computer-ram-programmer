@@ -1,5 +1,5 @@
 # 8-bit-computer-ram-programmer
-[Bean Eater's 8 Bit Computer](https://eater.net/8bit) - RAM module programmer over WiFi / HTTP
+[Ben Eater's 8 Bit Computer](https://eater.net/8bit) - RAM module programmer over WiFi / HTTP
 
 
 This project uses an [ESP8266](https://en.wikipedia.org/wiki/ESP8266) to replace the [RAM programming module](https://eater.net/8bit/ram) dip switches and push buttons for the 8-Bit Computer. The ESP8266 hosts a HTTP server from which programs can be loaded into the computer. 
