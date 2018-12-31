@@ -146,8 +146,12 @@ Note that the order of parameters does not matter. *clear* is always executed fi
 
 * I could not have started this without Ben Eater's explanation of shit registers while building the [EEPROM programmer module](https://www.youtube.com/watch?v=K88pgWhEb1M).
 
-* How to chain shift registers[controlling chained 74HC595 with I2C](https://techtutorialsx.com/2016/09/04/esp8266-controlling-chained-sn74hc595-ics/) and use SPI to push data into them.
+* How to [chain 74HC595 shift registers with I2C](https://techtutorialsx.com/2016/09/04/esp8266-controlling-chained-sn74hc595-ics/) and use SPI to push data into them.
 
 * [Pin mapping of the ESP8266](http://esp8266.github.io/Arduino/versions/2.0.0/doc/reference.html). Be aware that your experience in pin mapping may vary depending on the development board used. The current source is [mapped to a NodeMCU](https://techtutorialsx.com/2017/04/02/esp8266-nodemcu-pin-mappings/) board.
 
 * [SN74HC595 datasheet](http://www.ti.com/lit/ds/symlink/sn74hc595.pdf).
+
+## Contact
+
+Reddit:  [/u/foreveratom](https://www.reddit.com/user/foreveratom)
